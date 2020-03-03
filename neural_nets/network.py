@@ -42,6 +42,9 @@ class Network:
 
     def train_model(self, X, Y, epochs, batch_size):
         for epoch in range(epochs):
-            for batch_idx, (batch_X, batch_Y) in enumerate(batch_iterator(X, Y=Y)):
+            print("Epoch {}".format(epoch + 1))
+            for batch_idx, (batch_X, batch_Y) in enumerate(batch_iterator(X, Y=Y, batch_size=batch_size)):
+                print("\rBatch {}".format(batch_idx + 1), end='', flush=True)
                 loss = self.train_batch(batch_X, batch_Y)
-                # print(loss)
+            print()
+
